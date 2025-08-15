@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avaliação II</title>
+
+    <link rel="stylesheet" href="./src/css/index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Lista de Tarefas</h1>
+        <p>Organize suas tarefas de forma simples</p>
+      </header>
+
+      <div class="main-layout">
+        <aside class="sidebar">
+          <h2>Projetos</h2>
+          <button class="novo-projeto-btn" onclick="abrirModalProjeto()">
+            + Novo Projeto
+          </button>
+          <div id="lista-projetos"></div>
+        </aside>
+
+        <main class="main-content">
+          <div class="filtros">
+            <div class="filtro-grupo">
+              <button
+                class="filtro-btn ativo"
+                data-filtro="status"
+                data-valor="todas"
+                onclick="aplicarFiltro(this)"
+              >
+                Todas
+              </button>
+              <button
+                class="filtro-btn"
+                data-filtro="status"
+                data-valor="pendentes"
+                onclick="aplicarFiltro(this)"
+              >
+                Pendentes
+              </button>
+              <button
+                class="filtro-btn"
+                data-filtro="status"
+                data-valor="concluidas"
+                onclick="aplicarFiltro(this)"
+              >
+                Concluídas
+              </button>
+            </div>
+            <div class="filtro-grupo">
+              <button
+                class="filtro-btn ativo"
+                data-filtro="prioridade"
+                data-valor="todas"
+                onclick="aplicarFiltro(this)"
+              >
+                Todas
+              </button>
+              <button
+                class="filtro-btn"
+                data-filtro="prioridade"
+                data-valor="alta"
+                onclick="aplicarFiltro(this)"
+              >
+                Alta
+              </button>
+              <button
+                class="filtro-btn"
+                data-filtro="prioridade"
+                data-valor="media"
+                onclick="aplicarFiltro(this)"
+              >
+                Média
+              </button>
+              <button
+                class="filtro-btn"
+                data-filtro="prioridade"
+                data-valor="baixa"
+                onclick="aplicarFiltro(this)"
+              >
+                Baixa
+              </button>
+            </div>
+          </div>
+
+          <button class="adicionar-tarefa-btn" onclick="abrirModalTarefa()">
+            + Adicionar Nova Tarefa
+          </button>
+
+          <div class="tarefas-container" id="lista-tarefas"></div>
+        </main>
+      </div>
+    </div>
+
+    <div id="modal-projeto" class="modal">
+      <div class="modal-content">
+        <button class="fechar-modal" onclick="fecharModal('modal-projeto')">
+          &times;
+        </button>
+        <h3 id="titulo-modal-projeto">Novo Projeto</h3>
+        <form id="form-projeto" onsubmit="salvarProjeto(event)">
+          <div class="form-grupo">
+            <label for="nome-projeto">Nome do Projeto</label>
+            <input type="text" id="nome-projeto" required maxlength="100" />
+          </div>
+          <div class="modal-acoes">
+            <button
+              type="button"
+              class="btn-modal btn-cancelar"
+              onclick="fecharModal('modal-projeto')"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn-modal btn-salvar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="modal-tarefa" class="modal">
+      <div class="modal-content">
+        <button class="fechar-modal" onclick="fecharModal('modal-tarefa')">
+          &times;
+        </button>
+        <h3 id="titulo-modal-tarefa">Nova Tarefa</h3>
+        <form id="form-tarefa" onsubmit="salvarTarefa(event)">
+          <div class="form-grupo">
+            <label for="titulo-tarefa">Título da Tarefa</label>
+            <input type="text" id="titulo-tarefa" required maxlength="200" />
+          </div>
+          <div class="form-grupo">
+            <label for="descricao-tarefa">Descrição</label>
+            <textarea id="descricao-tarefa" maxlength="500"></textarea>
+          </div>
+          <div class="form-grupo">
+            <label for="data-vencimento">Data de Vencimento</label>
+            <input type="date" id="data-vencimento" />
+          </div>
+          <div class="form-grupo">
+            <label for="prioridade-tarefa">Prioridade</label>
+            <select id="prioridade-tarefa" required>
+              <option value="baixa">Baixa</option>
+              <option value="media" selected>Média</option>
+              <option value="alta">Alta</option>
+            </select>
+          </div>
+          <div class="form-grupo">
+            <label for="projeto-tarefa">Projeto</label>
+            <select id="projeto-tarefa">
+              <option value="">Sem projeto</option>
+            </select>
+          </div>
+          <div class="modal-acoes">
+            <button
+              type="button"
+              class="btn-modal btn-cancelar"
+              onclick="fecharModal('modal-tarefa')"
+            >
+              Cancelar
+            </button>
+            <button type="submit" class="btn-modal btn-salvar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./src/js/index.js"></script>
+  </body>
+</html>
