@@ -1,0 +1,437 @@
+:root {
+  --background: #020817;
+  --foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-foreground: #0f172a;
+  --secondary: #1e293b;
+  --muted-foreground: #94a3b8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  color: var(--foreground);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.header p {
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  min-height: 70vh;
+}
+
+.sidebar {
+  background: transparent;
+  border: 1px solid var(--secondary);
+  border-radius: 6px;
+  padding: 16px;
+  height: fit-content;
+}
+
+.sidebar h2 {
+  color: var(--foreground);
+  margin-bottom: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.novo-projeto-btn {
+  width: 100%;
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--secondary);
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.novo-projeto-btn:hover {
+  border-color: var(--primary);
+}
+
+.projeto-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.projeto-item:hover {
+  background: var(--secondary);
+}
+
+.projeto-item.ativo {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.projeto-nome {
+  flex: 1;
+  margin-left: 8px;
+}
+
+.projeto-acoes {
+  opacity: 0;
+  display: flex;
+  gap: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.projeto-item:hover .projeto-acoes {
+  opacity: 1;
+}
+
+.btn-pequeno {
+  background: transparent;
+  border: none;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 2px;
+  font-size: 0.8rem;
+}
+
+.btn-pequeno:hover {
+  color: var(--foreground);
+}
+
+.main-content {
+  background: transparent;
+  border: 1px solid var(--secondary);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.filtros {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filtro-grupo {
+  display: flex;
+  gap: 6px;
+}
+
+.filtro-btn {
+  padding: 6px 12px;
+  border: 1px solid var(--secondary);
+  background: transparent;
+  color: var(--muted-foreground);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+}
+
+.filtro-btn.ativo {
+  background: var(--secondary);
+  color: var(--foreground);
+  border-color: var(--secondary);
+}
+
+.filtro-btn:hover:not(.ativo) {
+  border-color: var(--primary);
+}
+
+.adicionar-tarefa-btn {
+  width: 100%;
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--secondary);
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  transition: border-color 0.2s ease;
+}
+
+.adicionar-tarefa-btn:hover {
+  border-color: var(--primary);
+}
+
+.tarefas-container {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.tarefa-item {
+  background: transparent;
+  border: 1px solid var(--secondary);
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s ease;
+}
+
+.tarefa-item:hover {
+  border-color: var(--primary);
+}
+
+.tarefa-item.concluida {
+  opacity: 0.6;
+}
+
+.tarefa-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.tarefa-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.tarefa-titulo {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.tarefa-titulo.concluida {
+  text-decoration: line-through;
+}
+
+.tarefa-acoes {
+  opacity: 0;
+  display: flex;
+  gap: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.tarefa-item:hover .tarefa-acoes {
+  opacity: 1;
+}
+
+.btn-acao {
+  background: transparent;
+  border: none;
+  color: var(--muted-foreground);
+  padding: 4px 8px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: color 0.2s ease;
+}
+
+.btn-acao:hover {
+  color: var(--foreground);
+}
+
+.tarefa-descricao {
+  color: var(--muted-foreground);
+  margin-bottom: 8px;
+  margin-left: 28px;
+  font-size: 0.9rem;
+}
+
+.tarefa-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 28px;
+  font-size: 0.85rem;
+  color: var(--muted-foreground);
+}
+
+.prioridade-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+}
+
+.prioridade-badge.alta {
+  color: #ef4444;
+}
+.prioridade-badge.media {
+  color: #f59e0b;
+}
+.prioridade-badge.baixa {
+  color: #10b981;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background: var(--background);
+  border: 1px solid var(--secondary);
+  margin: 8% auto;
+  padding: 24px;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+}
+
+.modal h3 {
+  color: var(--foreground);
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.form-grupo {
+  margin-bottom: 16px;
+}
+
+.form-grupo label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-grupo input,
+.form-grupo textarea,
+.form-grupo select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--secondary);
+  background: var(--background);
+  color: var(--foreground);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus,
+.form-grupo select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-grupo textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-modal {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.btn-salvar {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+}
+
+.btn-salvar:hover {
+  background: #2563eb;
+}
+
+.btn-cancelar {
+  background: transparent;
+  color: var(--muted-foreground);
+  border: 1px solid var(--secondary);
+}
+
+.btn-cancelar:hover {
+  color: var(--foreground);
+  border-color: var(--primary);
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--muted-foreground);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.fechar-modal:hover {
+  color: var(--foreground);
+}
+
+.mensagem-vazia {
+  text-align: center;
+  color: var(--muted-foreground);
+  padding: 40px 20px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+
+  .main-content {
+    order: 1;
+  }
+
+  .filtros {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
